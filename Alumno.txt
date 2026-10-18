@@ -1,0 +1,49 @@
+
+<?php
+// Clase para gestionar la asistencia de un alumno
+class Alumno {
+    // Atributos privados (Encapsulamiento)
+    private $matricula;
+    private $nombre;
+    private $totalClases;
+    private $asistencias;
+
+    // Constructor
+    public function __construct($matricula, $nombre, $totalClases) {
+        $this->matricula = $matricula;
+        $this->nombre = $nombre;
+        $this->totalClases = $totalClases;
+        $this->asistencias = 0; // Inicia con 0 asistencias
+    }
+
+    // Método para registrar una asistencia
+    public function registrarAsistencia() {
+        if ($this->asistencias < $this->totalClases) {
+            $this->asistencias++;
+            echo "Asistencia registrada para el alumno: <strong>{$this->nombre}</strong>.<br>";
+        } else {
+            echo "El alumno {$this->nombre} ya cubrió el total de clases del curso.<br>";
+        }
+    }
+
+    // Método para calcular el porcentaje de asistencia
+    public function calcularPorcentaje() {
+        if ($this->totalClases == 0) return 0;
+        return ($this->asistencias / $this->totalClases) * 100;
+    }
+
+    // Método para consultar el reporte del alumno
+    public function mostrarReporte() {
+        $porcentaje = $this->calcularPorcentaje();
+        $estado = ($porcentaje >= 80) ? "Regular (Aprobado por asistencia)" : "En Riesgo (Baja asistencia)";
+
+        echo "--- REPORTE DE ASISTENCIA ---<br>";
+        echo "Matrícula: " . $this->matricula . "<br>";
+        echo "Alumno: " . $this->nombre . "<br>";
+        echo "Asistencias: " . $this->asistencias . " / " . $this->totalClases . "<br>";
+        echo "Porcentaje: " . number_format($porcentaje, 1) . "%<br>";
+        echo "Estatus: " . $estado . "<br>";
+        echo "-----------------------------<br><br>";
+    }
+}
+?>

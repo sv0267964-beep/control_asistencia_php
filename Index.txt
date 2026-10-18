@@ -1,0 +1,26 @@
+
+<?php
+require_once 'Alumno.php';
+
+echo "<h2>Sistema de Control de Asistencia Escolar</h2>";
+
+// Instanciación de objetos usando el constructor (Matrícula, Nombre, Total de Clases del parcial)
+$alumno1 = new Alumno("20240101", "Ana Sofía Martínez", 10);
+$alumno2 = new Alumno("20240102", "Luis Fernando López", 10);
+
+// Simulación de registro de asistencias para Ana (registramos 8 clases)
+echo "<h3>Registrando asistencias del parcial...</h3>";
+for ($i = 0; $i < 8; $i++) {
+    $alumno1->registrarAsistencia();
+}
+
+// Simulación de registro para Luis (registramos solo 5 clases)
+for ($i = 0; $i < 5; $i++) {
+    $alumno2->registrarAsistencia();
+}
+
+echo "<br><h3>Resultados del Parcial:</h3>";
+// Mostrar el reporte final de cada alumno
+$alumno1->mostrarReporte();
+$alumno2->mostrarReporte();
+?>
